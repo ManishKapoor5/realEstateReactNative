@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    "module": "Node16",
+    "module": "esnext",
     "lib": [
       "es2017",
       "dom"
@@ -11,7 +11,7 @@
     "noEmit": true,
     "isolatedModules": true,
     "strict": true,
-    "moduleResolution": "node16",
+    "moduleResolution": "bundler",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "skipLibCheck": true,

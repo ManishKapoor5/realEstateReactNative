@@ -159,7 +159,7 @@ const Hero: React.FC = () => {
 
       <View style={styles.card}>
         {/* Tab Bar */}
-        <View style={styles.tabList}>
+        {/* <View style={styles.tabList}>
           <TouchableOpacity
             style={[styles.tab, activeTab === 'buy' ? styles.tabActive : null]}
             onPress={() => setActiveTab('buy')}
@@ -191,7 +191,7 @@ const Hero: React.FC = () => {
               Agent
             </Text>
           </TouchableOpacity>
-        </View>
+        </View> */}
 
         {/* Tab Content */}
         {(['buy', 'seller', 'agent'] as TabType[]).map((key) => (

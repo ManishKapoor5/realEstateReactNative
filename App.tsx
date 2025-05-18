@@ -64,7 +64,7 @@ interface Agent {
 }
 
 export type RootStackParamList = {
-  Index: undefined;
+  Home: undefined;
   PropertyListings: undefined;
   PropertyDetails: undefined;
   UserDashboard: undefined;
@@ -252,7 +252,7 @@ const App: React.FC = () => {
                 name="IndividualProperty"
                 component={PropertyDetailPage}
                 options={{ headerShown: true, title: 'Property' }}
-                getId={({ id }: { id: string }) => id}
+                getId={({ params }: { params: Readonly<{ id: string }> }) => params.id}
               />
               <Stack.Screen name="UpgradeTier" component={UpgradeTier} />
               <Stack.Screen name="Admin" component={AdminDashboardWrapper} />

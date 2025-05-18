@@ -20,7 +20,12 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "permissions": [
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_FINE_LOCATION"
+      ],
+      "package": "com.manishkapoorrr13.myapp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -33,6 +38,12 @@
         }
       ],
       "expo-font"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "6d8dec5e-7165-4537-ad97-dab6f0930c5d"
+      }
+    },
+    "owner": "manishkapoorrr1"
   }
 }

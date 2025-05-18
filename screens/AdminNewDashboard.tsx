@@ -21,7 +21,7 @@ import { Property, User } from '../types/property';
 import { useNavigation } from '@react-navigation/native';
 
 // Import the screens that will be used as "outlets"
-import Agents from '../screens/Agents';
+import  AgentsTab  from './Agents';
 import SettingsTab from '../components/SettingsTab';
 import PropertyLimitConfiguration from '../components/PropertyLimitConfiguration';
 import { PropertiesTab } from '../components/PropertiesTab';
@@ -34,9 +34,9 @@ import axios from 'axios';
 type StackParamList = {
   DashboardOverview: undefined;
   Properties: undefined;
-  Agents: undefined;
+  'Users & Agents': undefined;
   Settings: undefined;
-  UsersAndAgents: undefined;
+  'Buyer tier limit': undefined;
   Login: undefined;
 };
 
@@ -126,7 +126,7 @@ const DashboardOverview: React.FC = () => (
 const Stack = createStackNavigator<StackParamList>();
 
 // Simplified AdminDashboardNavigator that doesn't require a ref
-const AdminDashboardNavigator: React.FC<{activeScreen: keyof StackParamList}> = ({ activeScreen }) => {
+const AdminDashboard: React.FC<{activeScreen: keyof StackParamList}> = ({ activeScreen }) => {
   const [data, setData] = useState<Property[]>([]);
   const [agentdatainfo, setAgentDatainfo] = useState<User[]>([])
   const [total, setTotal] = useState<number>(0);
@@ -164,11 +164,11 @@ const AdminDashboardNavigator: React.FC<{activeScreen: keyof StackParamList}> = 
         return <DashboardMetrics totalValue={total} sold={count} agents={agentcount} available={total-count} properties={total} />;
       case 'Properties':
         return <PropertiesTab />;
-      case 'Agents':
-        return <Agents />;
+      case 'Users & Agents':
+        return <AgentsTab />;
       case 'Settings':
         return <SettingsTab />;
-      case 'UsersAndAgents':
+      case 'Buyer tier limit':
         return <PropertyLimitConfiguration />;
       default:
         return <DashboardMetrics totalValue={total} sold={count} agents={agentcount} available={total-count} properties={total} />;
@@ -209,8 +209,8 @@ const SidebarMenu: React.FC<SidebarMenuProps> = ({
   const menuItems = [
     { id: 'DashboardOverview', icon: 'dashboard', label: 'Dashboard' },
     { id: 'Properties', icon: 'home', label: 'Properties' },
-    { id: 'Agents', icon: 'people', label: 'Agents' },
-    { id: 'UsersAndAgents', icon: 'group', label: 'Users & Agents' },
+    { id: 'Users & Agents', icon: 'people', label: 'Users & Agents' },
+    { id: 'Buyer tier limit', icon: 'group', label: 'Buyer tier limit' },
     { id: 'Settings', icon: 'settings', label: 'Settings' },
   ];
   
@@ -525,9 +525,9 @@ const AdminNewDashboard: React.FC = () => {
               <Text style={styles.headerTitle}>
                 {activeScreen === 'DashboardOverview' ? 'Dashboard Overview' : 
                  activeScreen === 'Properties' ? 'Property Management' :
-                 activeScreen === 'Agents' ? 'Agents Management' :
+                 activeScreen === 'Users & Agents' ? 'Agents Management' :
                  activeScreen === 'Settings' ? 'Application Settings' :
-                 activeScreen === 'UsersAndAgents' ? 'Users & Agents' : 'Dashboard'}
+                 activeScreen === 'Buyer tier limit' && 'Buyer tier limit'}
               </Text>
               <Button
                 mode="contained"
@@ -542,7 +542,7 @@ const AdminNewDashboard: React.FC = () => {
             
             {/* This is the equivalent of the <Outlet /> in React Router */}
             <View style={styles.outletContainer}>
-              <AdminDashboardNavigator activeScreen={activeScreen} />
+              <AdminDashboard activeScreen={activeScreen} />
             </View>
           </View>
         </ScrollView>
